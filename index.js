@@ -1,14 +1,17 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
+
+app.use(cors());
 
 app.get('/api/timestamp/:date?', (req, res) => {
   const dateStr = req.params.date;
   let date;
 
-  if (!dateString) {
-    date = new Date();  // Current date
+  if (!dateStr) {
+    date = new Date();  
   } else {
-    const timestamp = Number(datestr);
+    const timestamp = Number(dateStr);
     date = isNaN(timestamp) ? new Date(dateStr) : new Date(timestamp);
   }
 
@@ -19,4 +22,5 @@ app.get('/api/timestamp/:date?', (req, res) => {
   }
 });
 
-app.listen(3000, () => console.log('Timestamp microservice running on port 3000'));
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Timestamp microservice running on port ${PORT}`));
