@@ -4,7 +4,7 @@ const app = express();
 
 app.use(cors());
 
-app.get('/api/timestamp/:date?', (req, res) => {
+app.get('/api/:date?', (req, res) => {  // Update this route to /api/:date?
   const dateStr = req.params.date;
   let date;
 
